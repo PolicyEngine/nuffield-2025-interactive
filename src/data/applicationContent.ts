@@ -288,7 +288,7 @@ We measure success through adoption rates across these audiences, citation patte
     key: "d_methods_approach_activities",
     title: "D. Methods, approach and activities",
     wordLimit: 2800,
-    content: `PolicyEngine builds interactive tools that help people understand how policy affects them. This project funds UK capacity to build these tools and reach audiences beyond Westminster—particularly the local journalists, councillors, and advocacy groups who lack access to sophisticated policy analysis.
+    content: `PolicyEngine builds interactive tools that help everyone in the UK—regardless of policy expertise—understand how tax and benefit policy affects their country, their community, and their household. This project funds UK capacity to build these tools and reach audiences beyond Westminster—particularly the local journalists, councillors, and advocacy groups who lack access to sophisticated policy analysis.
 
 Building on our validation work with 10 Downing Street (see Case for Importance), PolicyEngine has demonstrated it can produce analysis that meets the highest standards of government scrutiny. This validation provides the foundation for the public-facing interactives proposed here.
 
