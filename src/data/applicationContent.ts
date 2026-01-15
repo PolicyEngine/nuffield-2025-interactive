@@ -214,6 +214,32 @@ export const citations: Record<string, Citation> = {
     author: "Digital Public Goods Alliance",
     year: "2024",
     url: "https://digitalpublicgoods.net/standard/"
+  },
+  policyengine_us_data_2025: {
+    key: "policyengine_us_data_2025",
+    type: "misc",
+    title: "PolicyEngine US Data Documentation",
+    author: "PolicyEngine",
+    year: "2025",
+    url: "https://policyengine.github.io/policyengine-us-data",
+    note: "Technical documentation for US microsimulation data construction including state-level replication and L0-regularised calibration"
+  },
+  policyengine_uk_data_2025: {
+    key: "policyengine_uk_data_2025",
+    type: "misc",
+    title: "PolicyEngine UK Data Documentation",
+    author: "PolicyEngine",
+    year: "2025",
+    url: "https://policyengine.github.io/policyengine-uk-data",
+    note: "Technical documentation for UK microsimulation data construction including local authority calibration"
+  },
+  mhclg_council_tax_2024: {
+    key: "mhclg_council_tax_2024",
+    type: "misc",
+    title: "Council Tax Statistics",
+    author: "Ministry of Housing, Communities and Local Government",
+    year: "2024",
+    url: "https://www.gov.uk/government/collections/council-tax-statistics"
   }
 };
 
