@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f7fafc;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
