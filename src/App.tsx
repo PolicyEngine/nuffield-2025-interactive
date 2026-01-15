@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InteractiveIdeasList } from "./components/InteractiveIdeasList";
-
-const projectSummary = `PolicyEngine builds interactive tools that help everyone in the UK—regardless of policy expertise—understand how tax and benefit policy affects their country, their community, and their household. Nuffield's first grant built constituency and local authority infrastructure now validated at the highest levels of government. This project extends that investment in two directions: Budget interactives delivered overnight to all 650 constituencies, and a council tax policy platform enabling policymakers and the public to understand local schemes, compare across authorities, and design reforms with fiscal and distributional analysis.`;
+import { ContentWithCitations } from "./components/Citation";
+import { sections } from "./data/applicationContent";
 
 const keyStats = [
   { label: "Interactive ideas", value: "146" },
@@ -17,30 +17,33 @@ function Header() {
       style={{
         background: "#319795",
         color: "white",
-        padding: "1.5rem 2rem",
+        padding: "1rem 2rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         flexWrap: "wrap",
         gap: "1rem",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         <img
           src="https://raw.githubusercontent.com/PolicyEngine/policyengine-app/master/src/images/logos/policyengine/white.png"
           alt="PolicyEngine logo"
-          style={{ height: "40px" }}
+          style={{ height: "36px" }}
         />
         <div>
-          <h1 style={{ margin: 0, fontSize: "1.5rem", fontWeight: 600 }}>
+          <h1 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 600 }}>
             PolicyEngine UK
           </h1>
-          <p style={{ margin: 0, fontSize: "0.875rem", opacity: 0.9 }}>
-            Nuffield Foundation RDA 2025 Application
+          <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.9 }}>
+            Nuffield Foundation RDA 2025 • FR-000027022
           </p>
         </div>
       </div>
-      <div style={{ display: "flex", gap: "1rem" }}>
+      <div style={{ display: "flex", gap: "0.75rem" }}>
         <a
           href="https://policyengine.org/uk"
           target="_blank"
@@ -54,7 +57,22 @@ function Header() {
             fontSize: "0.875rem",
           }}
         >
-          Visit PolicyEngine
+          PolicyEngine UK
+        </a>
+        <a
+          href="https://github.com/PolicyEngine"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "white",
+            textDecoration: "none",
+            padding: "0.5rem 1rem",
+            borderRadius: "6px",
+            border: "1px solid rgba(255,255,255,0.3)",
+            fontSize: "0.875rem",
+          }}
+        >
+          GitHub
         </a>
       </div>
     </header>
@@ -67,14 +85,15 @@ function StatCard({ label, value }: { label: string; value: string }) {
       style={{
         background: "white",
         borderRadius: "8px",
-        padding: "1.5rem",
+        padding: "1.25rem",
         textAlign: "center",
         boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        minWidth: "140px",
       }}
     >
       <div
         style={{
-          fontSize: "2rem",
+          fontSize: "1.75rem",
           fontWeight: 700,
           color: "#319795",
           marginBottom: "0.25rem",
@@ -82,50 +101,52 @@ function StatCard({ label, value }: { label: string; value: string }) {
       >
         {value}
       </div>
-      <div style={{ fontSize: "0.875rem", color: "#718096" }}>{label}</div>
+      <div style={{ fontSize: "0.8rem", color: "#718096" }}>{label}</div>
     </div>
   );
 }
 
-function ProjectSummarySection() {
+function HeroSection() {
   return (
     <section
       style={{
-        background: "linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)",
+        background: "linear-gradient(135deg, #319795 0%, #2c7a7b 100%)",
+        color: "white",
         padding: "3rem 2rem",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
         <h2
           style={{
-            fontSize: "1.75rem",
-            fontWeight: 600,
-            color: "#1a202c",
-            marginBottom: "1.5rem",
+            fontSize: "2rem",
+            fontWeight: 700,
+            marginBottom: "1rem",
             textAlign: "center",
           }}
         >
-          Project summary
+          Interactive grant application
         </h2>
         <p
           style={{
             fontSize: "1.125rem",
-            lineHeight: 1.8,
-            color: "#344054",
+            lineHeight: 1.7,
             maxWidth: "900px",
             margin: "0 auto 2rem",
             textAlign: "center",
+            opacity: 0.95,
           }}
         >
-          {projectSummary}
+          This interactive site presents PolicyEngine's full application to the Nuffield
+          Foundation Research and Development Awards 2025. Hover over citations to see
+          references, explore our 146 policy interactive ideas, and try embedded
+          PolicyEngine tools.
         </p>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
             gap: "1rem",
-            maxWidth: "800px",
-            margin: "0 auto",
           }}
         >
           {keyStats.map((stat) => (
@@ -137,14 +158,255 @@ function ProjectSummarySection() {
   );
 }
 
-function InteractivesSection() {
-  const [activeTab, setActiveTab] = useState<"household" | "policy">(
-    "household"
+function TableOfContents({
+  activeSection,
+  onSectionClick,
+}: {
+  activeSection: string;
+  onSectionClick: (key: string) => void;
+}) {
+  return (
+    <nav
+      style={{
+        background: "#f7fafc",
+        borderBottom: "1px solid #e2e8f0",
+        padding: "1rem 2rem",
+        position: "sticky",
+        top: "60px",
+        zIndex: 99,
+        overflowX: "auto",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          display: "flex",
+          gap: "0.5rem",
+          flexWrap: "nowrap",
+        }}
+      >
+        {[
+          { key: "summary", label: "Summary" },
+          { key: "application", label: "Full application" },
+          { key: "interactives", label: "Try interactives" },
+          { key: "ideas", label: "146 ideas" },
+        ].map((item) => (
+          <button
+            key={item.key}
+            onClick={() => onSectionClick(item.key)}
+            style={{
+              padding: "0.5rem 1rem",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontWeight: 500,
+              fontSize: "0.875rem",
+              whiteSpace: "nowrap",
+              background: activeSection === item.key ? "#319795" : "transparent",
+              color: activeSection === item.key ? "white" : "#4a5568",
+            }}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+function ApplicationSection({
+  section,
+  isExpanded,
+  onToggle,
+}: {
+  section: (typeof sections)[0];
+  isExpanded: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div
+      style={{
+        background: "white",
+        borderRadius: "8px",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        marginBottom: "1rem",
+        overflow: "hidden",
+      }}
+    >
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%",
+          padding: "1.25rem 1.5rem",
+          border: "none",
+          background: isExpanded ? "#f7fafc" : "white",
+          cursor: "pointer",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          textAlign: "left",
+        }}
+      >
+        <div>
+          <h3
+            style={{
+              margin: 0,
+              fontSize: "1.125rem",
+              fontWeight: 600,
+              color: "#1a202c",
+            }}
+          >
+            {section.title}
+          </h3>
+          <span style={{ fontSize: "0.8rem", color: "#718096" }}>
+            {section.wordLimit} word limit
+          </span>
+        </div>
+        <span
+          style={{
+            fontSize: "1.5rem",
+            color: "#319795",
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0)",
+            transition: "transform 0.2s",
+          }}
+        >
+          ▼
+        </span>
+      </button>
+      {isExpanded && (
+        <div
+          style={{
+            padding: "1.5rem",
+            borderTop: "1px solid #e2e8f0",
+            color: "#344054",
+            fontSize: "1rem",
+          }}
+        >
+          <ContentWithCitations content={section.content} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FullApplicationSection() {
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(
+    new Set(["project_summary"])
   );
 
+  const toggleSection = (key: string) => {
+    setExpandedSections((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(key)) {
+        newSet.delete(key);
+      } else {
+        newSet.add(key);
+      }
+      return newSet;
+    });
+  };
+
+  const expandAll = () => {
+    setExpandedSections(new Set(sections.map((s) => s.key)));
+  };
+
+  const collapseAll = () => {
+    setExpandedSections(new Set());
+  };
+
   return (
-    <section style={{ padding: "3rem 2rem", background: "white" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+    <section
+      id="application"
+      style={{
+        padding: "3rem 2rem",
+        background: "#f7fafc",
+      }}
+    >
+      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "2rem",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "1.75rem",
+              fontWeight: 600,
+              color: "#1a202c",
+              margin: 0,
+            }}
+          >
+            Full application
+          </h2>
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            <button
+              onClick={expandAll}
+              style={{
+                padding: "0.5rem 1rem",
+                border: "1px solid #319795",
+                borderRadius: "6px",
+                background: "white",
+                color: "#319795",
+                cursor: "pointer",
+                fontSize: "0.875rem",
+              }}
+            >
+              Expand all
+            </button>
+            <button
+              onClick={collapseAll}
+              style={{
+                padding: "0.5rem 1rem",
+                border: "1px solid #e2e8f0",
+                borderRadius: "6px",
+                background: "white",
+                color: "#4a5568",
+                cursor: "pointer",
+                fontSize: "0.875rem",
+              }}
+            >
+              Collapse all
+            </button>
+          </div>
+        </div>
+        <p
+          style={{
+            color: "#718096",
+            marginBottom: "1.5rem",
+            fontSize: "0.95rem",
+          }}
+        >
+          Click sections to expand. Hover over{" "}
+          <span style={{ color: "#319795", borderBottom: "1px dotted #319795" }}>
+            citations
+          </span>{" "}
+          to see full references with links.
+        </p>
+        {sections.map((section) => (
+          <ApplicationSection
+            key={section.key}
+            section={section}
+            isExpanded={expandedSections.has(section.key)}
+            onToggle={() => toggleSection(section.key)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function InteractivesSection() {
+  const [activeTab, setActiveTab] = useState<"calculator" | "policy">("calculator");
+
+  return (
+    <section id="interactives" style={{ padding: "3rem 2rem", background: "white" }}>
+      <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
         <h2
           style={{
             fontSize: "1.75rem",
@@ -154,7 +416,7 @@ function InteractivesSection() {
             textAlign: "center",
           }}
         >
-          Try our live interactives
+          Try PolicyEngine
         </h2>
         <p
           style={{
@@ -164,7 +426,7 @@ function InteractivesSection() {
             textAlign: "center",
           }}
         >
-          See how PolicyEngine works in practice
+          Explore the tools that power our policy analysis
         </p>
 
         <div
@@ -176,15 +438,15 @@ function InteractivesSection() {
           }}
         >
           <button
-            onClick={() => setActiveTab("household")}
+            onClick={() => setActiveTab("calculator")}
             style={{
               padding: "0.75rem 1.5rem",
               border: "none",
               borderRadius: "6px",
               cursor: "pointer",
               fontWeight: 500,
-              background: activeTab === "household" ? "#319795" : "#e2e8f0",
-              color: activeTab === "household" ? "white" : "#4a5568",
+              background: activeTab === "calculator" ? "#319795" : "#e2e8f0",
+              color: activeTab === "calculator" ? "white" : "#4a5568",
             }}
           >
             Household calculator
@@ -215,18 +477,18 @@ function InteractivesSection() {
         >
           <iframe
             src={
-              activeTab === "household"
-                ? "https://policyengine.org/uk/household"
+              activeTab === "calculator"
+                ? "https://policyengine.org/uk"
                 : "https://policyengine.org/uk/policy"
             }
             style={{
               width: "100%",
-              height: "600px",
+              height: "700px",
               border: "none",
             }}
             title={
-              activeTab === "household"
-                ? "PolicyEngine UK Household Calculator"
+              activeTab === "calculator"
+                ? "PolicyEngine UK Calculator"
                 : "PolicyEngine UK Policy Analysis"
             }
           />
@@ -239,6 +501,7 @@ function InteractivesSection() {
 function IdeasSection() {
   return (
     <section
+      id="ideas"
       style={{
         padding: "3rem 2rem",
         background: "#f7fafc",
@@ -266,8 +529,8 @@ function IdeasSection() {
             margin: "0 auto 2rem",
           }}
         >
-          Demonstrating the depth and breadth of timely policy analysis
-          PolicyEngine can deliver
+          Demonstrating the depth and breadth of timely policy analysis PolicyEngine can
+          deliver. Search and filter by category.
         </p>
         <InteractiveIdeasList />
       </div>
@@ -286,17 +549,30 @@ function Footer() {
       }}
     >
       <p style={{ margin: "0 0 0.5rem", fontSize: "0.875rem", opacity: 0.9 }}>
-        PolicyEngine is a nonprofit organization dedicated to making tax and
-        benefit policy accessible to everyone.
+        PolicyEngine is a nonprofit organization dedicated to making tax and benefit
+        policy accessible to everyone.
       </p>
       <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
-        Nuffield Foundation RDA 2025 Application - Reference FR-000027022
+        Nuffield Foundation RDA 2025 Application • Reference FR-000027022 • £300,000 over
+        3 years
       </p>
     </footer>
   );
 }
 
 function App() {
+  const [activeSection, setActiveSection] = useState("summary");
+
+  const scrollToSection = (key: string) => {
+    setActiveSection(key);
+    const element = document.getElementById(
+      key === "summary" ? "hero" : key === "application" ? "application" : key
+    );
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div
       style={{
@@ -306,8 +582,12 @@ function App() {
       }}
     >
       <Header />
+      <TableOfContents activeSection={activeSection} onSectionClick={scrollToSection} />
       <main>
-        <ProjectSummarySection />
+        <section id="hero">
+          <HeroSection />
+        </section>
+        <FullApplicationSection />
         <InteractivesSection />
         <IdeasSection />
       </main>
