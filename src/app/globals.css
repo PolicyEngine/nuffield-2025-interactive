@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "@policyengine/ui-kit/theme.css";
 
 :root {
   --pe-teal-500: #319795;
@@ -25,11 +27,6 @@ body {
   line-height: 1.6;
   color: var(--pe-gray-700);
   background: var(--pe-gray-100);
-  min-height: 100vh;
-}
-
-#root {
-  width: 100%;
   min-height: 100vh;
 }
 

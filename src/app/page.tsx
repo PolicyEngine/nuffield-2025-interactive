@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
-import { InteractiveIdeasList } from "./components/InteractiveIdeasList";
-import { ContentWithCitations } from "./components/Citation";
-import { sections } from "./data/applicationContent";
+import { InteractiveIdeasList } from "@/components/InteractiveIdeasList";
+import { ContentWithCitations } from "@/components/Citation";
+import { sections } from "@/data/applicationContent";
 
 const keyStats = [
   { label: "Interactive ideas", value: "146" },
@@ -29,6 +31,7 @@ function Header() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://raw.githubusercontent.com/PolicyEngine/policyengine-app/master/src/images/logos/policyengine/white.png"
           alt="PolicyEngine logo"
@@ -136,7 +139,7 @@ function HeroSection() {
             opacity: 0.95,
           }}
         >
-          This interactive site presents PolicyEngine's full application to the Nuffield
+          This interactive site presents PolicyEngine&apos;s full application to the Nuffield
           Foundation Research and Development Awards 2025. Hover over citations to see
           references, explore our 146 policy interactive ideas, and try embedded
           PolicyEngine tools.
@@ -560,7 +563,7 @@ function Footer() {
   );
 }
 
-function App() {
+export default function HomePage() {
   const [activeSection, setActiveSection] = useState("summary");
 
   const scrollToSection = (key: string) => {
@@ -595,5 +598,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
