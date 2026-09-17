@@ -41,3 +41,7 @@ bun run build
 - **Funder:** Nuffield Foundation
 - **Programme:** Research and Development Awards 2025
 - **Amount:** £300,000 over 3 years
+
+## License
+
+Code in this repository is released under the [MIT License](LICENSE). Original text and figures are released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) with attribution to PolicyEngine. Third-party data and materials keep their own terms.
